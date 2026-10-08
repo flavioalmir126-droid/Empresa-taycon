@@ -8,14 +8,14 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-      - uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '3.22.2'
-      - run: pip install flet
-      - run: |
+      - name: Instalar Flet
+        run: pip install flet
+      - name: Build APK
+        run: |
           mv empresa.py main.py
-          flet build apk --verbose
-      - uses: actions/upload-artifact@v4
+          echo "y" | flet build apk --verbose
+      - name: Salvar APK
+        uses: actions/upload-artifact@v4
         with:
           name: meu-jogo-empresa
           path: build/apk
